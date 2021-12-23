@@ -1,5 +1,5 @@
 import Custionario from "./components/Custionario";
-import './App.css'
+import './app.css'
 import CuestionarioState from "./context/CuestionarioState";
 
 
