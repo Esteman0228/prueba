@@ -3,21 +3,22 @@ import cuestionarioContext from "../context/CuestionarioContext";
 import Preguntas from '../preguntas.json';
 
 
-export default function PreguntaUno() {
+export default function PreguntaCuatro() {
     //array destructure para sacar los objetos de categorias
-    const {dificil, facil, muy_dificil, muy_facil, normal} = Preguntas
+
 
     const [seleccion, guardarSeleccion] = useState(null)
     const [mostrar, setMostrar] = useState({})
     const [bandera, setBandera] = useState(false)
 
     const contextCuestionario = useContext(cuestionarioContext);
-    const{score, respuestaCorrectaUno, respuestaIncorrecta, controlScore} = contextCuestionario;
+    const{score, respuestaCorrectaCuatro, respuestaIncorrecta, controlScore} = contextCuestionario;
+
 
     useEffect(()=>{
         //funcion para elegir una pregunta al azar
-        const valor = Math.floor(Math.random()*muy_facil.length)
-        setMostrar(muy_facil[valor])
+        const valor = Math.floor(Math.random()*Preguntas.length)
+        setMostrar(Preguntas[valor])
         setBandera(true)
     }, [])
 
@@ -25,26 +26,26 @@ export default function PreguntaUno() {
     const onSubmit = (e) =>{
         e.preventDefault()
         if(seleccion){
-            controlScore(score + 100)
-            respuestaCorrectaUno()
+            controlScore(score +100)
+            respuestaCorrectaCuatro()
         }else{
-            respuestaIncorrecta()
             controlScore(0)
+            respuestaIncorrecta()
         }
     }
 
     return (
         <div>
-            <h2>1. {mostrar.pregunta}</h2>
+            <h2>4. {mostrar.pregunta}</h2>
             {bandera ? (
-                <form id='formUno' onSubmit={onSubmit}>
+                <form id='formCuatro' onSubmit={onSubmit}>
                     {mostrar.opciones.map(item=>(
                     <div onChange={()=>guardarSeleccion(item.flag)} key={item.id}>
-                        <input type="radio" name='seleccion' id={item.id} value={item.flag} />
-                        <label htmlFor={item.id}>{item.opcion}</label>
+                        <input type="radio" name='seleccion' id={item.opcion} value={item.flag} />
+                        <label htmlFor={item.opcion}>{item.opcion}</label>
                     </div>
                     ))}
-                    <input type='submit' value='Avanzar' form='formUno'/>
+                    <input type='submit' value='Avanzar' form='formCuatro'/>
                 </form>  
             )
             : null}
