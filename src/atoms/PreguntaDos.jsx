@@ -12,7 +12,7 @@ export default function PreguntaDos({mostrarTercero}) {
     const [bandera, setBandera] = useState(false)
 
     const contextCuestionario = useContext(cuestionarioContext);
-    const{terceraPregunta} = contextCuestionario;
+    const{score, respuestaCorrectaDos, respuestaIncorrecta, controlScore} = contextCuestionario;
 
     useEffect(()=>{
         //funcion para elegir una pregunta al azar
@@ -25,9 +25,12 @@ export default function PreguntaDos({mostrarTercero}) {
     const onSubmit = (e) =>{
         e.preventDefault()
         if(seleccion){
-            console.log('respuesta correcta')
-            terceraPregunta()
-        }else{console.log('Incorrecto')}
+            respuestaCorrectaDos()
+            controlScore(score+100)
+        }else{
+            controlScore(0)
+            respuestaIncorrecta()
+        }
     }
 
     return (

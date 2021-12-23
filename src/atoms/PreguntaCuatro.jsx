@@ -12,7 +12,8 @@ export default function PreguntaCuatro() {
     const [bandera, setBandera] = useState(false)
 
     const contextCuestionario = useContext(cuestionarioContext);
-    const{quintaPregunta} = contextCuestionario;
+    const{score, respuestaCorrectaCuatro, respuestaIncorrecta, controlScore} = contextCuestionario;
+
 
     useEffect(()=>{
         //funcion para elegir una pregunta al azar
@@ -25,9 +26,12 @@ export default function PreguntaCuatro() {
     const onSubmit = (e) =>{
         e.preventDefault()
         if(seleccion){
-            console.log('respuesta correcta')
-            quintaPregunta()
-        }else{console.log('Incorrecto')}
+            controlScore(score +100)
+            respuestaCorrectaCuatro()
+        }else{
+            controlScore(0)
+            respuestaIncorrecta()
+        }
     }
 
     return (

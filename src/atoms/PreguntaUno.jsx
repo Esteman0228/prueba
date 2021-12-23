@@ -12,7 +12,7 @@ export default function PreguntaUno() {
     const [bandera, setBandera] = useState(false)
 
     const contextCuestionario = useContext(cuestionarioContext);
-    const{segundaPregunta} = contextCuestionario;
+    const{score, respuestaCorrectaUno, respuestaIncorrecta, controlScore} = contextCuestionario;
 
     useEffect(()=>{
         //funcion para elegir una pregunta al azar
@@ -25,9 +25,12 @@ export default function PreguntaUno() {
     const onSubmit = (e) =>{
         e.preventDefault()
         if(seleccion){
-            console.log('respuesta correcta')
-            segundaPregunta()
-        }else{console.log('Incorrecto')}
+            controlScore(100)
+            respuestaCorrectaUno()
+        }else{
+            respuestaIncorrecta()
+            controlScore(0)
+        }
     }
 
     return (

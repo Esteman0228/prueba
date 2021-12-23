@@ -1,4 +1,5 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
+import cuestionarioContext from "../context/CuestionarioContext";
 import Preguntas from '../preguntas.json';
 
 
@@ -9,6 +10,9 @@ export default function PreguntaCinco() {
     const [seleccion, guardarSeleccion] = useState(null)
     const [mostrar, setMostrar] = useState({})
     const [bandera, setBandera] = useState(false)
+
+    const contextCuestionario = useContext(cuestionarioContext);
+    const{score, respuestaCorrectaCinco, respuestaIncorrecta, controlScore} = contextCuestionario;
 
 
     useEffect(()=>{
@@ -22,8 +26,12 @@ export default function PreguntaCinco() {
     const onSubmit = (e) =>{
         e.preventDefault()
         if(seleccion){
-            console.log('respuesta correcta')
-        }else{console.log('Incorrecto')}
+            controlScore(score + 100)
+            respuestaCorrectaCinco()
+        }else{
+            controlScore(0)
+            respuestaIncorrecta()
+        }
     }
 
     return (

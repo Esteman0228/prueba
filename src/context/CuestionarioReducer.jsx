@@ -4,6 +4,14 @@ import {
     TERCERA_PREGUNTA,
     CUARTA_PREGUNTA,
     QUINTA_PREGUNTA,
+    RESPUESTA_CORRECTAUNO,
+    RESPUESTA_CORRECTADOS,
+    RESPUESTA_CORRECTATRES,
+    RESPUESTA_CORRECTACUATRO,
+    RESPUESTA_CORRECTACINCO,
+    RESPUESTA_INCORRECTA,
+    CONTROL_SCORE,
+    BOTON_RETIRO
 } from '../types'
 
 
@@ -11,44 +19,107 @@ const cuestionarioReducer= (state, action) =>{
     switch(action.type){
         case PRIMERA_PREGUNTA:
             return{
+                ...state,
                 primero:true,
                 segundo:false,
                 tercero:false,
                 cuarto:false,
                 quinto:false,
+                correcto:false,
+                incorrecto:false
             }
             case SEGUNDA_PREGUNTA:
             return{
-                primero:false,
+                ...state,
+                correctoUno:false,
                 segundo:true,
-                tercero:false,
-                cuarto:false,
-                quinto:false,
             }
             case TERCERA_PREGUNTA:
             return{
-                primero:false,
-                segundo:false,
+                ...state,
+                correctoDos:false,
                 tercero:true,
-                cuarto:false,
-                quinto:false,
             }
             case CUARTA_PREGUNTA:
             return{
-                primero:false,
-                segundo:false,
-                tercero:false,
+                ...state,
+                correctoTres:false,
                 cuarto:true,
-                quinto:false,
             }
             case QUINTA_PREGUNTA:
             return{
-                primero:false,
-                segundo:false,
-                tercero:false,
-                cuarto:false,
-                quinto:true,
+                ...state,
+                correctoCuatro:false,
+                quinto:true
             }
+            case RESPUESTA_CORRECTAUNO:
+                return{
+                ...state,
+                primero:false,
+                    correctoUno:true
+                }
+            case RESPUESTA_CORRECTADOS:
+                return{
+                ...state,
+                segundo:false,
+                    correctoDos:true
+                }
+            case RESPUESTA_CORRECTATRES:
+            return{
+                ...state,
+                tercero:false,
+                correctoTres:true
+            }
+            case RESPUESTA_CORRECTACUATRO:
+                return{
+                ...state,
+                cuarto:false,
+                correctoCuatro:true
+                }
+            case RESPUESTA_CORRECTACINCO:
+                return{
+                ...state,
+                quinto:false,
+                correctoCinco:true
+                }
+            case RESPUESTA_INCORRECTA:
+                return{
+                ...state,
+                    primero:false,
+                    segundo:false,
+                    tercero:false,
+                    cuarto:false,
+                    quinto:false,
+                    correcto:false,
+                    correctoUno: false,
+                    correctoDos: false,
+                    correctoTres: false,
+                    correctoCuatro: false,
+                    correctoCinco: false,
+                    incorrecto:true
+                }
+            case CONTROL_SCORE:
+                return{
+                    ...state,
+                    score: action.payload
+                }
+            case BOTON_RETIRO:
+                return{
+                    ...state,
+                    primero:false,
+                    segundo:false,
+                    tercero:false,
+                    cuarto:false,
+                    quinto:false,
+                    correcto:false,
+                    correctoUno: false,
+                    correctoDos: false,
+                    correctoTres: false,
+                    correctoCuatro: false,
+                    correctoCinco: false,
+                    incorrecto:false,
+                    retiro:true
+                }
 
         default:
             return state;

@@ -12,7 +12,7 @@ export default function PreguntaTres() {
     const [bandera, setBandera] = useState(false)
 
     const contextCuestionario = useContext(cuestionarioContext);
-    const{cuartaPregunta} = contextCuestionario;
+    const{score, respuestaCorrectaTres, respuestaIncorrecta, controlScore} = contextCuestionario;
 
     useEffect(()=>{
         //funcion para elegir una pregunta al azar
@@ -25,9 +25,12 @@ export default function PreguntaTres() {
     const onSubmit = (e) =>{
         e.preventDefault()
         if(seleccion){
-            console.log('respuesta correcta')
-            cuartaPregunta()
-        }else{console.log('Incorrecto')}
+            controlScore(score+100)
+            respuestaCorrectaTres()
+        }else{
+            respuestaIncorrecta()
+            controlScore(0)
+        }
     }
 
     return (

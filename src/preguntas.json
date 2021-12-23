@@ -28,7 +28,7 @@
     },{
       "pregunta": "¿Qué es una base de datos?",
       "opciones": [
-        { "opcion": "Es un servidor que permite persistir información o datos concretos", "flag": false, "id":"A"  },
+        { "opcion": "Es un servidor que permite persistir información o datos concretos", "flag": true, "id":"A"  },
         { "opcion": "Es un grupo de datos efímeros", "flag": false, "id":"B"  },
         { "opcion": "Es una colección de datos o información concreta", "flag": true, "id":"C"  },
         { "opcion": "Un repositorio de datos", "flag": false,"id":"D" }
@@ -65,7 +65,7 @@
     },{
       "pregunta": "Uno de los motores de bases de datos más conocidos es...",
       "opciones": [
-        { "opcion": "MySQL", "flag": false, "id":"A"  },
+        { "opcion": "MySQL", "flag": true , "id":"A"  },
         { "opcion": "Excel", "flag": false, "id":"B"  },
         { "opcion": "VBasic", "flag": false, "id":"C"  },
         { "opcion": "DataStorage", "flag": false, "id":"D" }
